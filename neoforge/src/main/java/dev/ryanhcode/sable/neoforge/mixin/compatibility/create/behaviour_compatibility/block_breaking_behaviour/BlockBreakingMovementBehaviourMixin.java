@@ -3,6 +3,7 @@ package dev.ryanhcode.sable.neoforge.mixin.compatibility.create.behaviour_compat
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
+import com.simibubi.create.content.contraptions.actors.roller.RollerMovementBehaviour;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.content.kinetics.base.BlockBreakingMovementBehaviour;
 import dev.ryanhcode.sable.ActiveSableCompanion;
@@ -76,7 +77,7 @@ public abstract class BlockBreakingMovementBehaviourMixin implements MovementBeh
                     targetCenter = targetSubLevel.logicalPose().transformPosition(targetCenter);
                 }
 
-                if (sublevelLocalCenter.distanceToSqr(targetCenter) > 2 * 2) {
+                if (sublevelLocalCenter.distanceToSqr(targetCenter) > 2 * 2 &&  !((Object) this instanceof RollerMovementBehaviour)) {
                     data.remove("Progress");
                     data.remove("TicksUntilNextProgress");
                     data.remove("BreakingPos");
